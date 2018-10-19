@@ -13,8 +13,7 @@ function erro(){
 function trazResultadoDaBusca(event){
   event.preventDefault();
   const respostaDaBusca = new XMLHttpRequest();
-  respostaDaBusca.open("GET",
-  `http://api.giphy.com/v1/gifs/search?q=${buscaGif}&api_key=bDhH3a3qaasXlpI8ydrQwxKzoduF0ZOk`)
+  respostaDaBusca.open("GET", `http://api.giphy.com/v1/gifs/search?q=${buscaGif()}&api_key=PfvrtrzRLo2CYyWQtI4MqHfo8vnQYJSR`);
   respostaDaBusca.onload = carregaPostsComGifs;
   respostaDaBusca.onerror = erro;
   respostaDaBusca.send();
@@ -23,9 +22,8 @@ function trazResultadoDaBusca(event){
 }
 
 function carregaPostsComGifs(){
-  listaGifs = JSON.parse(this.responseText)
+  listaGifs = JSON.parse(this.responseText)["data"];
   exibePosts();
-
 
 }
 
@@ -39,6 +37,3 @@ function exibePosts(){
         `).join("")}
       </div>`;
 }
-  
-
-
